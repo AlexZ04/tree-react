@@ -4,7 +4,12 @@ button {
     color: green;
     border-radius: 8px;
     height: 25px;
-    width: 5dvw;
+    width: 10dvw;
+    font-size: 1.5dvw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     cursor: pointer;
 
@@ -13,6 +18,7 @@ button {
 
 button:hover {
     opacity: 0.6;
+    background-color: #efefef;
 }
 
 button:active {

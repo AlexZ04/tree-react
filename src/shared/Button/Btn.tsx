@@ -1,5 +1,6 @@
+import { ButtonProps } from "../../constants/ButtonProps";
 import "./button.css";
 
-export function Btn() {
-    return <button>ToDo</button>;
+export function Btn({ name }: ButtonProps) {
+    return <button>{name}</button>;
 }
