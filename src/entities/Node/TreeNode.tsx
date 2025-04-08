@@ -1,37 +1,21 @@
+import { NodeInfo } from "../../classes/NodeInfo";
 import "./Node.css";
 
-export function TreeNode() {
+export function TreeNode({ name, children }: NodeInfo) {
     return (
         <>
             <div className="node">
                 <div className="node-body">
-                    <h3>Заголовок</h3>
+                    <h3>{name}</h3>
                 </div>
 
                 <div className="node-children">
-                    <div className="node">
-                        <div className="node-body">
-                            <h3>Заголовок</h3>
-                        </div>
-
-                        <div className="node-children">
-                            <div className="node">
-                                <div className="node-body">
-                                    <h3>Заголовок</h3>
-                                </div>
-
-                                <div className="node-children"></div>
-                            </div>
-
-                            <div className="node">
-                                <div className="node-body">
-                                    <h3>Заголовок</h3>
-                                </div>
-
-                                <div className="node-children"></div>
-                            </div>
-                        </div>
-                    </div>
+                    {children.map((element) => (
+                        <TreeNode
+                            name={element.name}
+                            children={element.children}
+                        />
+                    ))}
                 </div>
             </div>
         </>
