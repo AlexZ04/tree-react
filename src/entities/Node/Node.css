@@ -1,0 +1,13 @@
+.node-body {
+    border: 1px solid green;
+    border-radius: 8px;
+    margin-left: 50px;
+    margin-top: 10px;
+    padding: 10px;
+    width: 15dvw;
+    word-break: break-all;
+}
+
+.node-children {
+    margin-left: 50px;
+}
