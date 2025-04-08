@@ -1,0 +1,20 @@
+button {
+    background-color: white;
+    border: 1px solid green;
+    color: green;
+    border-radius: 8px;
+    height: 25px;
+    width: 5dvw;
+
+    cursor: pointer;
+
+    transition: 0.5s;
+}
+
+button:hover {
+    opacity: 0.6;
+}
+
+button:active {
+    opacity: 0.8;
+}
