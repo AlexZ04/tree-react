@@ -6,9 +6,11 @@ header {
     width: 100%;
     height: 10dvh;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0 0 8px 8px;
     left: 0;
     top: 0;
+
+    z-index: 10;
 }
 
 header h1 {

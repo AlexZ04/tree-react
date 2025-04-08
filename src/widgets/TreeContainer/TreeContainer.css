@@ -1,0 +1,10 @@
+.container {
+    position: absolute;
+    top: 10dvh;
+    left: 0;
+    bottom: 10dvh;
+
+    overflow-y: auto;
+
+    width: 100%;
+}
