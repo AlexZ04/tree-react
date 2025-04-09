@@ -29,18 +29,62 @@ export function TreeProvider({ children }: { children: ReactNode }) {
     const [selectedNode, setSelectedNode] = useState<string | null>(null);
 
     const addNode = (id: string | null, text: string, isChild: boolean) => {
-        const newId = uuid();
-        alert(newId);
+        setTree((previousTree) => {
+            const newTree = structuredClone(previousTree);
+
+            const newNode = {
+                id: uuid(),
+                name: text,
+                children: [],
+            };
+
+            if (!id) {
+                if (isChild) newTree.nodes.push(newNode);
+                else newTree.nodes.splice(-1, 0, newNode);
+            }
+
+            const path = findNodeById(id, tree.nodes);
+            if (!(path === "" || !id)) {
+                if (isChild) {
+                    let currentNode = newTree.nodes[Number(path[0])];
+
+                    for (let i = 1; i < path.length; i++)
+                        currentNode = currentNode.children[Number(path[i])];
+
+                    currentNode.children.push({
+                        id: uuid(),
+                        name: text,
+                        children: [],
+                    });
+                } else {
+                    if (path.length === 1) {
+                        newTree.nodes.splice(Number(path[0]), 0, newNode);
+                    } else {
+                        let nodeParent = newTree.nodes[Number(path[0])];
+                        for (let i = 1; i < path.length - 1; i++)
+                            nodeParent = nodeParent.children[Number(path[i])];
+
+                        nodeParent.children.splice(
+                            Number(path[path.length - 1]),
+                            0,
+                            newNode
+                        );
+                    }
+                }
+            }
+
+            return newTree;
+        });
     };
 
     const updateNode = (id: string | null, updatedText: string) => {
         setTree((previousTree) => {
             const newTree = structuredClone(previousTree);
 
-            const path = findNodeById(id, tree.nodes);
+            const path = findNodeById(id, newTree.nodes);
             if (path === "" || !id) return previousTree;
 
-            let currentNode = tree.nodes[Number(path[0])];
+            let currentNode = newTree.nodes[Number(path[0])];
             for (let i = 1; i < path.length; i++)
                 currentNode = currentNode.children[Number(path[i])];
 
@@ -94,19 +138,6 @@ export function TreeProvider({ children }: { children: ReactNode }) {
         }
 
         return "";
-    };
-
-    const getNode = (id: string | null) => {
-        const path = findNodeById(id, tree.nodes);
-        if (path === "") return;
-
-        let currentNode = tree.nodes[Number(path[0])];
-
-        for (let i = 1; i < path.length; i++) {
-            currentNode = currentNode.children[Number(path[i])];
-        }
-
-        return currentNode;
     };
 
     return (
