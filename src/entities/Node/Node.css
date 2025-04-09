@@ -8,6 +8,7 @@
     word-break: break-all;
 
     cursor: pointer;
+    transition: 0.5s;
 }
 
 .node-children {

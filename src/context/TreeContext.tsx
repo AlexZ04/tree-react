@@ -111,6 +111,8 @@ export function TreeProvider({ children }: { children: ReactNode }) {
                 nodeParent.children.splice(Number(path[path.length - 1]), 1);
             }
 
+            setSelectedNode(null);
+
             return newTree;
         });
     };
