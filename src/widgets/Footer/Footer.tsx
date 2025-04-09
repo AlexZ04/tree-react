@@ -7,9 +7,15 @@ export function Footer() {
 
     return (
         <footer>
-            <Btn name="Add" onClick={() => addNode()} />
+            <Btn
+                name="Add"
+                onClick={() => addNode(selectedNode, "node", true)}
+            />
             <Btn name="Remove" onClick={() => deleteNode(selectedNode)} />
-            <Btn name="Edit" onClick={() => updateNode()} />
+            <Btn
+                name="Edit"
+                onClick={() => updateNode(selectedNode, "edited")}
+            />
             <Btn name="Reset" onClick={() => reset()} />
         </footer>
     );
