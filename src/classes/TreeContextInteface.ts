@@ -6,7 +6,7 @@ export interface TreeContextInteface {
     setTree: Dispatch<SetStateAction<FirstLay>>;
     addNode: () => void;
     updateNode: () => void;
-    deleteNode: () => void;
+    deleteNode: (id: string | null) => void;
     reset: () => void;
     selectedNode: string | null;
     setSelectedNode: Dispatch<SetStateAction<string | null>>;

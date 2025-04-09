@@ -11,8 +11,15 @@ header {
     top: 0;
 
     z-index: 10;
+
+    cursor: pointer;
+    transition: 0.5s;
 }
 
 header h1 {
     color: green;
+}
+
+header:hover {
+    opacity: 0.6;
 }

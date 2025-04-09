@@ -9,10 +9,17 @@ const firstChild: NodeInfo = {
     name: "second",
     children: [secondChild],
 };
+
+const thirdChild: NodeInfo = {
+    id: uuid(),
+    name: "fourth",
+    children: [],
+};
+
 const node: NodeInfo = {
     id: uuid(),
     name: "First",
-    children: [firstChild],
+    children: [firstChild, thirdChild],
 };
 
 let nodes: NodeInfo[] = [node];
@@ -30,8 +37,9 @@ export function TreeProvider({ children }: { children: ReactNode }) {
         alert();
     };
 
-    const deleteNode = () => {
-        alert();
+    const deleteNode = (id: string | null) => {
+        const pathToNode = findNodeById(id, tree.nodes);
+        console.log(pathToNode);
     };
 
     const reset = () => {
@@ -39,18 +47,21 @@ export function TreeProvider({ children }: { children: ReactNode }) {
     };
 
     const findNodeById = (
-        id: string,
+        id: string | null,
         nodes: NodeInfo[],
         currentPath: string = ""
     ) => {
+        if (id === null) return "";
+
         for (let i = 0; i < nodes.length; i++) {
             if (nodes[i].id === id) return currentPath + i.toString();
 
-            return findNodeById(
+            const pathToCurrentNode: string = findNodeById(
                 id,
                 nodes[i].children,
                 currentPath + i.toString()
             );
+            if (pathToCurrentNode !== "") return pathToCurrentNode;
         }
 
         return "";
