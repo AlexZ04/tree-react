@@ -1,12 +1,19 @@
-import { FirstLay } from "../../classes/NodeInfo";
 import { TreeNode } from "../../entities/Node/TreeNode";
+import { useTree } from "../../hooks/UseTree";
 import "./TreeContainer.css";
 
-export function TreeContainer({ nodes }: FirstLay) {
+export function TreeContainer() {
+    const { tree } = useTree();
+
     return (
         <div className="container">
-            {nodes.map((element) => (
-                <TreeNode name={element.name} children={element.children} />
+            {tree.nodes.map((element) => (
+                <TreeNode
+                    key={element.id}
+                    id={element.id}
+                    name={element.name}
+                    children={element.children}
+                />
             ))}
         </div>
     );

@@ -1,4 +1,5 @@
 export interface NodeInfo {
+    id: string;
     name: string;
     children: Array<NodeInfo>;
 }

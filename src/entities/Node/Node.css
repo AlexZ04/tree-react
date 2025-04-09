@@ -6,8 +6,18 @@
     padding: 2px 10px;
     width: 15dvw;
     word-break: break-all;
+
+    cursor: pointer;
 }
 
 .node-children {
     margin-left: 50px;
+}
+
+.node-body:hover {
+    opacity: 0.6;
+}
+
+.selected {
+    background-color: rgb(104, 219, 104);
 }
