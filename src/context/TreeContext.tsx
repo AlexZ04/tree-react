@@ -51,8 +51,24 @@ export function TreeProvider({ children }: { children: ReactNode }) {
     };
 
     const deleteNode = (id: string | null) => {
-        const node = getNode(id);
-        console.log(node);
+        setTree((previousTree) => {
+            const newTree = structuredClone(previousTree);
+
+            const path = findNodeById(id, newTree.nodes);
+            if (path === "" || !id) return previousTree;
+
+            if (path.length === 1) {
+                newTree.nodes.splice(Number(path[0]), 1);
+            } else {
+                let nodeParent = newTree.nodes[Number(path[0])];
+                for (let i = 1; i < path.length - 1; i++)
+                    nodeParent = nodeParent.children[Number(path[i])];
+
+                nodeParent.children.splice(Number(path[path.length - 1]), 1);
+            }
+
+            return newTree;
+        });
     };
 
     const reset = () => {
