@@ -1,14 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalProps } from "../../classes/ModalProps";
 import { useTree } from "../../hooks/UseTree";
 import "./Modal.css";
 
 export function Modal({ type, setModalType }: ModalProps) {
-    const { selectedNode, addNode, updateNode } = useTree();
+    const { selectedNode, addNode, updateNode, getSelectedNodeName } =
+        useTree();
+
     const [nodeName, setNodeName] = useState("");
     const [addingType, setAddingType] = useState<"children" | "before">(
         "children"
     );
+
+    useEffect(() => {
+        if (type === "editing") setNodeName(getSelectedNodeName());
+        else setNodeName("");
+    }, [type, selectedNode]);
 
     const applyChanges = () => {
         if (nodeName.length < 1) return;

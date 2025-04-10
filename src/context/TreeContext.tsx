@@ -146,6 +146,18 @@ export function TreeProvider({ children }: { children: ReactNode }) {
         return "";
     };
 
+    const getSelectedNodeName = () => {
+        const path = findNodeById(selectedNode, tree.nodes);
+
+        if (path === "") return "";
+
+        let currentNode = tree.nodes[Number(path[0])];
+        for (let i = 1; i < path.length; i++)
+            currentNode = currentNode.children[Number(path[i])];
+
+        return currentNode.name;
+    };
+
     return (
         <TreeContext.Provider
             value={{
@@ -157,6 +169,7 @@ export function TreeProvider({ children }: { children: ReactNode }) {
                 reset,
                 selectedNode,
                 setSelectedNode,
+                getSelectedNodeName,
             }}
         >
             {children}
