@@ -1,4 +1,4 @@
-button {
+.manager-btns {
     background-color: white;
     border: 1px solid green;
     color: green;
@@ -16,11 +16,26 @@ button {
     transition: 0.5s;
 }
 
-button:hover {
+.manager-btns:hover {
     opacity: 0.6;
     background-color: #efefef;
 }
 
-button:active {
+.manager-btns:active {
     opacity: 0.8;
+}
+
+*:disabled {
+    background-color: dimgrey;
+    color: white;
+    border: 1px solid white;
+}
+
+*:disabled:hover {
+    background-color: dimgrey;
+    cursor: no-drop;
+}
+
+*:disabled:active {
+    opacity: 1;
 }

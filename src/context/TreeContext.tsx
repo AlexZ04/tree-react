@@ -18,7 +18,7 @@ const thirdChild: NodeInfo = {
 
 const node: NodeInfo = {
     id: uuid(),
-    name: "First",
+    name: "first",
     children: [firstChild, thirdChild],
 };
 
@@ -130,7 +130,7 @@ export function TreeProvider({ children }: { children: ReactNode }) {
         nodes: NodeInfo[],
         currentPath: string = ""
     ) => {
-        if (id === null) return "";
+        if (!id) return "";
 
         for (let i = 0; i < nodes.length; i++) {
             if (nodes[i].id === id) return currentPath + i.toString();
