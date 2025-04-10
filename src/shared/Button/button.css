@@ -26,16 +26,16 @@
 }
 
 *:disabled {
-    background-color: dimgrey;
-    color: white;
-    border: 1px solid white;
+    background-color: dimgrey !important;
+    color: white !important;
+    border: 1px solid white !important;
 }
 
 *:disabled:hover {
-    background-color: dimgrey;
-    cursor: no-drop;
+    background-color: dimgrey !important;
+    cursor: no-drop !important;
 }
 
 *:disabled:active {
-    opacity: 1;
+    opacity: 1 !important;
 }
