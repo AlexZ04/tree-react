@@ -32,10 +32,16 @@ export function Modal({ type, setModalType }: ModalProps) {
         return false;
     };
 
+    const closeModal = () => {
+        setModalType("closed");
+        setNodeName("");
+        setAddingType("children");
+    };
+
     return (
         <div
             className={`modal-window ${type === "closed" ? "hidden" : ""}`}
-            onMouseDown={() => setModalType("closed")}
+            onMouseDown={() => closeModal()}
         >
             <div
                 className="modal-window-body"
@@ -44,7 +50,7 @@ export function Modal({ type, setModalType }: ModalProps) {
                 <div className="modal-window-body__head">
                     <button
                         className="close-button"
-                        onClick={() => setModalType("closed")}
+                        onClick={() => closeModal()}
                     >
                         X
                     </button>
