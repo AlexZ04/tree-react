@@ -6,12 +6,22 @@ import "./Modal.css";
 export function Modal({ type, setModalType }: ModalProps) {
     const { selectedNode, addNode, updateNode } = useTree();
     const [nodeName, setNodeName] = useState("");
+    const [addingType, setAddingType] = useState<"children" | "before">(
+        "children"
+    );
 
     const applyChanges = () => {
         if (nodeName.length < 1) return;
 
-        if (type === "adding") addNode(selectedNode, nodeName, false);
-        else updateNode(selectedNode, nodeName);
+        if (type === "adding") {
+            addNode(
+                selectedNode,
+                nodeName,
+                addingType === "children" ? true : false
+            );
+
+            setAddingType("children");
+        } else updateNode(selectedNode, nodeName);
 
         setModalType("closed");
         setNodeName("");
@@ -48,7 +58,25 @@ export function Modal({ type, setModalType }: ModalProps) {
                         onChange={(val) => setNodeName(val.target.value)}
                     />
 
-                    {type === "adding" ? "" : ""}
+                    {type === "adding" ? (
+                        <select
+                            value={addingType}
+                            onChange={(val) =>
+                                setAddingType(
+                                    val.target.value == "children"
+                                        ? "children"
+                                        : "before"
+                                )
+                            }
+                        >
+                            <option value="children">
+                                Children of element
+                            </option>
+                            <option value="before">Before element</option>
+                        </select>
+                    ) : (
+                        ""
+                    )}
                 </div>
 
                 <div className="modal-window-body__bottom">

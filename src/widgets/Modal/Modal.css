@@ -22,7 +22,7 @@
     border-radius: 8px;
     padding: 8px;
 
-    width: 10dvw;
+    width: 20dvw;
     background-color: white;
 }
 
@@ -42,12 +42,13 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
+    flex-direction: column;
     width: 100%;
     margin-bottom: 5px;
 }
 
 input {
-    width: 100%;
+    width: 50%;
 }
 
 .apply-button {
