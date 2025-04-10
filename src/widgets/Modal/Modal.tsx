@@ -51,29 +51,41 @@ export function Modal({ type, setModalType }: ModalProps) {
                 </div>
 
                 <div className="modal-window-body__form">
-                    <input
-                        placeholder="Node name"
-                        autoComplete="off"
-                        value={nodeName}
-                        onChange={(val) => setNodeName(val.target.value)}
-                    />
+                    <div className="input-container">
+                        <label htmlFor="node-name-input">Node name</label>
+
+                        <input
+                            id="node-name-input"
+                            placeholder="Node name"
+                            autoComplete="off"
+                            value={nodeName}
+                            onChange={(val) => setNodeName(val.target.value)}
+                        />
+                    </div>
 
                     {type === "adding" ? (
-                        <select
-                            value={addingType}
-                            onChange={(val) =>
-                                setAddingType(
-                                    val.target.value == "children"
-                                        ? "children"
-                                        : "before"
-                                )
-                            }
-                        >
-                            <option value="children">
-                                Children of element
-                            </option>
-                            <option value="before">Before element</option>
-                        </select>
+                        <div className="input-container">
+                            <label htmlFor="adding-type-select">
+                                Adding type
+                            </label>
+
+                            <select
+                                id="adding-type-select"
+                                value={addingType}
+                                onChange={(val) =>
+                                    setAddingType(
+                                        val.target.value == "children"
+                                            ? "children"
+                                            : "before"
+                                    )
+                                }
+                            >
+                                <option value="children">
+                                    Children of element
+                                </option>
+                                <option value="before">Before element</option>
+                            </select>
+                        </div>
                     ) : (
                         ""
                     )}

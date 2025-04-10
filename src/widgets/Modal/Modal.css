@@ -41,13 +41,20 @@
 .modal-window-body__form {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    gap: 10px;
+    margin-bottom: 10px;
     flex-direction: column;
     width: 100%;
     margin-bottom: 5px;
 }
 
-input {
+.input-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+input,
+select {
     width: 50%;
 }
 
